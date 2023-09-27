@@ -1,0 +1,390 @@
+sky
+
+##
+sky_file_vector_c_analysis
+--file1
+1.bin
+--file2
+2.bin
+--type
+min_max
+#equal
+#Lp
+--norm
+2
+--logLevel
+2
+--epsilon
+0.000000001
+
+sky_exit
+
+##
+sky_ml_net_run_rnn
+train
+-data
+rnn.data.win
+-function_form
+rnn.train.cfg
+#-function_paras
+#lstm.theta.backup
+
+sky_exit
+
+sky_ml_net_run_rnn
+generate
+-function_form
+rnn.cfg
+-function_paras
+#lstm.theta.backup
+grrm.theta
+-srand
+0
+-seed
+A
+-len
+2000
+-logLevel
+0
+
+sky_exit
+
+#
+sky_ml_detect
+test
+data = my_captcha.data
+function_form = yolov3-tiny.cfg
+function_paras = yolov3-tiny.theta.backup
+image = 1.jpg
+
+#
+sky_ml_lstm_text
+--help_config
+sky_exit
+
+#
+sky_ml_lstm_text
+-predict
+0
+-textPath
+./config
+-functionParasPath
+y.bin
+#-functionParasPath_init
+-functionParasPath_save
+y.bin
+-num_iters
+50
+-state_size
+40
+-deviceType
+1
+-num_iters
+300
+-step_size
+0.1
+-printTextInOpt
+0
+-n_lines
+20
+-sequence_length
+30
+
+sky_exit
+
+#
+sky_ml_lstm_sin01
+#-functionParasPath
+#para.bin
+#-functionParasPath_init
+#para.bin
+-functionParasPath_save
+sin_para.bin
+-num_iters
+500
+-step_size
+0.1
+
+sky_exit
+
+#
+sky_ml_function_paras_convert
+-function_form
+rnn.cfg
+-function_paras
+grrm.convert.weights
+-dst_paras
+grrm.convert.weights.theta
+#-type
+#dk
+
+
+#
+sky_ml_detect
+train
+data = captcha/app/my_captcha/my_captcha.data
+function_form = captcha/app/my_captcha/yolov3-tiny.cfg
+#function_paras = captcha/darknet53.conv.74
+
+#
+sky_plot_data
+data_path = result.txt
+#src_path =
+dst_path = dst.png
+logLevel = 0
+data_format = text_2d
+drawLine = 1
+radius = -1
+originAtBl = 1
+data_interval = 47, 47; 53, 53
+#data_interval = -10, -30; 40, 30
+#data_interval = -13, -13; 13,  13
+#bound_relax = -0.1
+pad = 45, 35; 30, 40
+color = 255, 2, 0, 199
+img_nr = 420
+img_nc = 560
+#img_bg_color = 255, 255, 255, 0
+i = 1
+
+sky_plot_data
+data_path = result.txt
+src_path = dst.png
+dst_path = dst.png
+logLevel = 0
+data_format = text_2d
+drawLine = 0
+radius = 4
+originAtBl = 1
+scale = 2
+#data_interval = -10, -30; 40, 30
+#data_interval = -13, -13; 13,  13
+pad = 45, 35; 30, 40
+color = 0, 0, 0, 199
+img_nr = 420
+img_nc = 560
+img_bg_color = 255, 255, 255, 200
+i = 1
+
+sky_exit
+
+#
+sky_sample_function
+function_form = ad_f_sin.txt
+path = result.txt
+logLevel = 0
+
+sky_plot_data
+data_path = result.txt
+src_path = src.png
+dst_path = dst.png
+logLevel = 0
+data_format = text_2d
+drawLine = 1
+radius = -1
+originAtBl = 1
+data_interval = 0, 20, -2, 2
+pad = 45, 30, 15, 40
+i = 1
+
+sky_plot_data
+data_path = result.txt
+src_path = dst.png
+dst_path = dst.png
+logLevel = 0
+data_format = text_2d
+drawLine = 0
+radius = 4
+originAtBl = 1
+data_interval = 0, 20, -2, 2
+pad = 45, 30, 15, 40
+color = 0, 0, 0
+
+sky_exit
+
+#
+star_tool_system_cmd
+pwd
+cd ..
+pwd
+
+#plot_data
+sky_plot_data
+roi.bin
+bg.jpg
+bg_dst.jpg
+
+#resize
+star_img_read_and_write
+src.jpg
+dst.jpg
+--dst_nr
+360
+--dst_nc
+640
+
+sky_file_is_text
+--type
+folder
+--file1
+my_folder_path
+--exclude_suffixes
+jpg,py
+#jpg
+--logLevel
+2
+sky_exit
+
+#play
+sky_ml_rl_chapter01_tic_tac_toe
+
+#replace
+sky_file_rename_files
+--folder
+my_folder
+--td
+1
+--mode
+replace
+--find
+abc
+--replaceBy
+xyz
+--print
+11
+
+#rename
+sky_file_rename_files
+--folder
+my_folder
+--mode
+number
+--start
+0
+--width
+1
+--name_prefix
+file_
+--name_suffix
+.bin
+--print
+1
+
+#
+sky_file_is_same
+--file1
+1.bin
+--file2
+2.bin
+
+##
+star_tool_timer_setTimeout
+10
+function=star_tool_monitor_turn_on
+star_tool_timer_setInterval
+7
+function=star_tool_monitor_turn_off
+sky_loop_forever
+
+#
+star_tool_monitor_turn_off
+
+#plot
+sky_plot_data
+roi.bin
+bg.jpg
+bg_dst.jpg
+--print
+--i
+1
+
+#f
+sky_run_function
+dst = 1.txt
+function_form = ad_f_1.txt
+compute_grad = 1
+binary = 0
+logLevel =1
+
+#generate letters
+sky_run_function
+dst = ./2
+binary = 0
+dims =  30
+value = 8
+use_letters = 1
+start_letter = -11
+typeName = m21_type_TenR
+logLevel =11
+
+#img sub
+sky_image_sub
+mode = get
+src = src.jpg
+sub = sub.jpg
+dst = dst.jpg
+offset1 =500
+offset2 = 600
+d1 = 150
+d2 = 200
+logLevel = 1
+
+sky_file_read_and_write
+src = a.txt
+dst = b.bin
+src_format = hex_text
+dst_format = binary
+sky_exit
+
+sky_file_read_and_write
+src = b.bin
+dst = a.txt
+src_format = binary
+dst_format = hex_text
+sky_exit
+
+#argb2jpg
+star_img_read_and_write
+0.argb
+0.jpg
+--src_format
+argb8888
+--src_nr
+200
+--src_nc
+300
+--print
+
+#jpg2argb
+star_img_read_and_write
+0.jpg
+0.argb
+--dst_format
+argb8888
+
+#jpg2yuv
+star_img_read_and_write
+src.jpg
+dst.yuv
+--dst_format
+i420
+--dst_nr
+1080
+--dst_nc
+1920
+
+#yuv2jpg
+star_img_read_and_write
+src.yuv
+dst.jpg
+--src_format
+i420
+--src_nr
+1080
+--src_nc
+1920
+
+#mat2jpg
+star_img_read_and_write
+0.mat
+0.jpg

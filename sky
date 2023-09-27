@@ -1,0 +1,21 @@
+sky
+--h
+
+#sky_info
+
+sky_image_show
+--h
+
+
+sky_image_show
+enabled = 0
+path = /storage/emulated/0/Download/1.jpg
+posFg = 500, 300, 300, 100
+pathBg = /storage/emulated/0/Download/2.jpg
+winType = 1
+
+
+sky_export_model
+--h
+
+sky_log

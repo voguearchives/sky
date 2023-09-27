@@ -1,0 +1,20 @@
+math21_ad_function
+
+# y = x1 + k * sin(x2)
+# x1 = 1, 2, 3
+# x2 = 4, 5, 6
+# y_actual = 4.00485754013062;
+# dy/dx1 = 1, 1, 1
+# dy/dx2 = -0.653643608093262, 0.28366219997406, 0.960170269012451
+
+adf_variable
+isInput = 1
+dims = 533
+value = -50
+step = 0.2
+#logLevel = 1
+output_id = 1
+
+adf_sin
+input_ids = 1
+output_id = 3

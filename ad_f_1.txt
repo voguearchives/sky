@@ -1,0 +1,32 @@
+math21_ad_function
+
+# y = sum(x1 + sin(x2))
+# x1 = 1, 2, 3
+# x2 = 4, 5, 6
+# y_actual = 4.00485754013062;
+# dy/dx1 = 1, 1, 1
+# dy/dx2 = -0.653643608093262, 0.28366219997406, 0.960170269012451
+
+adf_variable
+#isInput = 1
+dims = 3
+value = 1
+step = 1
+#logLevel = 1
+output_id = line_16
+
+adf_variable
+isInput = 1
+value = 4
+step = 1
+dims = 3
+#logLevel = 1
+
+adf_sin
+output_id = line_26
+
+adf_add
+input_ids = line_16, line_26
+
+adf_sum
+isKeepingDims = 0
